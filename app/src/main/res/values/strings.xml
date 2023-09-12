@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TipCalAdv</string>
+    <string name="cost_of_service">Cost of service</string>
+    <string name="how_was_the_service">How was the service?</string>
+    <string name="amazing_service">Amazing Service</string>
+    <string name="good_service">Good Service</string>
+    <string name="ok_service">Okay Service</string>
+    <string name="round_up_tip">Round up Tip</string>
+    <string name="tip_amount">Tip Amount: %s</string>
+</resources>
