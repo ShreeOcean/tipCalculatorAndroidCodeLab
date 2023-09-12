@@ -39,6 +39,42 @@ class ExampleInstrumentedTest {
     }
 
     @Test
+    fun calculate_18_percent_tip() {
+        Espresso.onView(ViewMatchers.withId(R.id.cost_of_service_edit_text))
+            .perform(ViewActions.typeText("50.00"), ViewActions.closeSoftKeyboard())
+        Espresso.onView(ViewMatchers.withId(R.id.option_eighteen_percent))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.calculate_button))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.tip_result))
+            .check(ViewAssertions.matches(ViewMatchers.withText(CoreMatchers.containsString("$9.00"))))
+    }
+
+    @Test
+    fun calculate_15_percent_tip_round_up() {
+        Espresso.onView(ViewMatchers.withId(R.id.cost_of_service_edit_text))
+            .perform(ViewActions.typeText("50.00"), ViewActions.closeSoftKeyboard())
+        Espresso.onView(ViewMatchers.withId(R.id.option_fifteen_percent))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.calculate_button))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.tip_result))
+            .check(ViewAssertions.matches(ViewMatchers.withText(CoreMatchers.containsString("$8.00"))))
+    }
+    @Test
+    fun calculate_15_percent_tip_no_rounding() {
+        Espresso.onView(ViewMatchers.withId(R.id.cost_of_service_edit_text))
+            .perform(ViewActions.typeText("50.00"), ViewActions.closeSoftKeyboard())
+        Espresso.onView(ViewMatchers.withId(R.id.option_fifteen_percent))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.round_up_switch))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.calculate_button))
+            .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.tip_result))
+            .check(ViewAssertions.matches(ViewMatchers.withText(CoreMatchers.containsString("$7.50"))))
+    }
+    @Test
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
